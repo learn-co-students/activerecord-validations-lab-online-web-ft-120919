@@ -1,7 +1,8 @@
 class TitleValidator < ActiveModel::Validator
     def validate(record)
-        unless record.title.include?("Won't Believe", "Secret", "Top [number]", "Guess")
-            record.errors.add[:title] << "You Won't Believe These True Facts"
+        unless record.title.match?("Won't Believe", "Secret", "Top [number]", "Guess")
+            binding.pry
+            record.errors.add :title, "Invalid not clickbait"
         end
     end
 end
